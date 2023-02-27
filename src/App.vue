@@ -3,16 +3,15 @@ import TheHeader from "@/components/TheHeader.vue";
 import EntryEditor from "./components/EntryEditor.vue";
 import EntryCard from "@/components/EntryCard.vue";
 import { reactive } from "vue";
-interface User {
-  id: number;
-  username: string;
-  setting: [];
-}
+import type User from "./types/User";
+
 const user : User = reactive({
   id: 1,
   username: "Aung Myat Moe",
-  setting: [],
+  settings: [],
 });
+console.log(user.id);
+
 </script>
 
 <template>
