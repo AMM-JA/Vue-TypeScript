@@ -7,6 +7,8 @@ import type User from "./types/User";
 import type Emoji from "./types/Emoji";
 import type Entry from "./types/Entry";
 
+const entries : Entry[] = reactive([]);
+
 const user: User = reactive({
   id: 1,
   username: "Aung Myat Moe",
@@ -15,7 +17,8 @@ const user: User = reactive({
 console.log(user.id);
 
 const handleCreateEntry = (entry: Entry) => {
-  console.log("entry", entry);
+  // console.log("entry", entry);
+  entries.unshift(entry);
 };
 </script>
 
@@ -24,8 +27,8 @@ const handleCreateEntry = (entry: Entry) => {
     <TheHeader />
     <EntryEditor @@create="handleCreateEntry" />
     <ul>
-      <li>
-        <EntryCard />
+      <li v-for="entry in entries" :key="entry.id">
+        <EntryCard :entry="entry" />
       </li>
     </ul>
   </main>
