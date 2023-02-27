@@ -44,7 +44,7 @@ const handleTextInput = (e: Event) => {
 const textarea = ref<HTMLTextAreaElement | null>(null);
 onMounted(() => textarea.value?.focus());
 
-// ? Inject
+// ? Inject !
 import { userInjectionKey } from "@/injectionKeys";
 const user = inject(userInjectionKey);
 

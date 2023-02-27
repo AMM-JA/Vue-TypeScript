@@ -16,7 +16,7 @@ const user: User = reactive({
 });
 console.log(user.id);
 
-// ? Injection
+// ? Injection !
 import type { InjectionKey } from "vue";
 import { userInjectionKey } from "./injectionKeys";
 // const userInjectionKey = Symbol() as InjectionKey<User>;
