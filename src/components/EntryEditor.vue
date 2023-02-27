@@ -40,9 +40,10 @@ const handleTextInput = (e: Event) => {
   }
 };
 
-// ? template refs
+// ? template refs !
 const textarea = ref<HTMLTextAreaElement | null>(null);
 onMounted(() => textarea.value?.focus());
+
 </script>
 <template>
   <form class="entry-form" @submit.prevent="handleSubmit">
