@@ -3,6 +3,7 @@ import EmojiField from "@/components/EmojiField.vue";
 import ArrowCircleRight from "@/assets/icons/arrow-circle-right.svg";
 import { ref, computed, onMounted, inject } from "vue";
 import type Emoji from "@/types/Emoji";
+import type Entry from "@/types/Entry";
 
 // ? data
 const body = ref("");
@@ -13,26 +14,20 @@ const maxChars = 280;
 // ? emit event
 // defineEmits(["@create"]);
 const emit = defineEmits<{
-  // (e: "@create", entry: Entry): void;
-  (
-    e: "@create",
-    entry: {
-      text: string;
-      emoji: Emoji | null;
-    }
-  ): void;
+  (e: "@create", entry: Entry): void;
+  // (e: "@create",entry: {body: string;emoji: Emoji | null;}): void;
 }>();
 // https://vuejs.org/guide/typescript/composition-api.htm/#typing-component-emits
 const handleSubmit = () => {
-  // emit("@create", {
-  //   body: body.value,
-  //   emoji: emoji.value,
-  //   createdAt: new Date(),
-  //   userId: 1,
-  //   id: Math.random(),
-  // });
-  // body.value = "";
-  // emoji.value = null;
+  emit("@create", {
+    body: body.value,
+    emoji: emoji.value,
+    createdAt: new Date(),
+    userId: 1,
+    id: Math.random(),
+  });
+  body.value = "";
+  emoji.value = null;
 };
 
 // ? methods
