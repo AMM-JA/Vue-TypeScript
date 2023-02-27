@@ -11,7 +11,18 @@ const charCount = computed<number>(() => body.value.length);
 const maxChars = 280;
 
 // ? emit event
-defineEmits(["@create"]);
+// defineEmits(["@create"]);
+const emit = defineEmits<{
+  // (e: "@create", entry: Entry): void;
+  (
+    e: "@create",
+    entry: {
+      text: string;
+      emoji: Emoji | null;
+    }
+  ): void;
+}>();
+// https://vuejs.org/guide/typescript/composition-api.htm/#typing-component-emits
 const handleSubmit = () => {
   // emit("@create", {
   //   body: body.value,
@@ -25,14 +36,14 @@ const handleSubmit = () => {
 };
 
 // ? methods
-const handleTextInput = (e:Event)=>{
+const handleTextInput = (e: Event) => {
   const textarea = e.target as HTMLTextAreaElement;
   if (textarea.value.length <= maxChars) {
     body.value = textarea.value;
   } else {
     body.value = textarea.value = textarea.value.substring(0, maxChars);
   }
-}
+};
 
 // ? template refs
 const textarea = ref<HTMLTextAreaElement | null>(null);
