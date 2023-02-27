@@ -28,3 +28,7 @@ npm run build
 ```sh
 npm run lint
 ```
+
+
+### You can also read document 
+https://vuejs.org/guide/typescript/overview.html
