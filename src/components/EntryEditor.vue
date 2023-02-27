@@ -4,11 +4,27 @@ import ArrowCircleRight from "@/assets/icons/arrow-circle-right.svg";
 import { ref, computed, onMounted, inject } from "vue";
 import type Emoji from "@/types/Emoji";
 
-//? data
+// ? data
 const body = ref("");
 const emoji = ref<Emoji | null>(null);
 const charCount = computed<number>(() => body.value.length);
 const maxChars = 280;
+
+// ? emit event
+defineEmits(["@create"]);
+const handleSubmit = () => {
+  // emit("@create", {
+  //   body: body.value,
+  //   emoji: emoji.value,
+  //   createdAt: new Date(),
+  //   userId: 1,
+  //   id: Math.random(),
+  // });
+  // body.value = "";
+  // emoji.value = null;
+};
+
+// ? methods
 const handleTextInput = (e:Event)=>{
   const textarea = e.target as HTMLTextAreaElement;
   if (textarea.value.length <= maxChars) {
@@ -18,12 +34,12 @@ const handleTextInput = (e:Event)=>{
   }
 }
 
-//? template refs
+// ? template refs
 const textarea = ref<HTMLTextAreaElement | null>(null);
 onMounted(() => textarea.value?.focus());
 </script>
 <template>
-  <form class="entry-form" @submit.prevent>
+  <form class="entry-form" @submit.prevent="handleSubmit">
     <textarea
       :value="body"
       ref="textarea"
