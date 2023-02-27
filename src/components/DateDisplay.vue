@@ -17,10 +17,11 @@ export default defineComponent({
       return formatRelative(this.date, Date.now());
     },
   },
-  // mounted() {
-  // this.$http("https://myendpoint.com");
-  //   this.formatted;
-  // },
+  mounted() {
+    this.$http("https://myendpoint.com");
+    // ! https://vuejs.org/guide/typescript/options-api.html#augmenting-custom-options
+    // this.formatted;
+  },
 });
 </script>
 <template>
