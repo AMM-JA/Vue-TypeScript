@@ -44,6 +44,10 @@ const handleTextInput = (e: Event) => {
 const textarea = ref<HTMLTextAreaElement | null>(null);
 onMounted(() => textarea.value?.focus());
 
+// ? Inject
+import { userInjectionKey } from "@/injectionKeys";
+const user = inject(userInjectionKey);
+
 </script>
 <template>
   <form class="entry-form" @submit.prevent="handleSubmit">
@@ -51,7 +55,7 @@ onMounted(() => textarea.value?.focus());
       :value="body"
       ref="textarea"
       @keyup="handleTextInput"
-      placeholder="New Journal Entry for danielkelly_io"
+      :placeholder="`New Journal Entry for ${user?.username || 'anonymous'}`"
     ></textarea>
     <EmojiField v-model="emoji" />
     <div class="entry-form-footer">
